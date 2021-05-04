@@ -6,12 +6,17 @@
     <link href="css/style.css" rel="stylesheet">
 </head>
 <body>
-    <div id="endgame">
-        <img src="img/gameover.png" id="lose">
-        <img src="img/win.png" id="won">
-        <div id="restart">Play Again!</div>
+    <div id="start" onclick="startGame()">
+        <img src="img/start.png">
     </div>
-    <canvas id="mycanvas" width="800" height="500"></canvas>
+    <div id="container">
+        <canvas id="mycanvas" width="800" height="500"></canvas>
+        <div id="endgame">
+            <img src="img/gameover.png" id="lose">
+            <img src="img/win.png" id="won">
+            <div id="restart">Play Again!</div>
+        </div>
+    </div>
     <script src="js/main.js"></script>
 </body>
 </html>

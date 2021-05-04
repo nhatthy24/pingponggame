@@ -1,13 +1,16 @@
 body{
-  text-align: center;
   padding-top: 50px;
+
 }
 #endgame{
+  display: none;
   position: absolute;
-  width: 400px;
+  width: 800px;
   height: 500px;
   background: rgba(0,0,0,0.5);
-  display: none;
+  left: 0;
+  bottom: 0;
+  //display: none;
   #won{
     width: 100px;
     position: absolute;
@@ -15,20 +18,32 @@ body{
     left: 150px;
   }
   #lose{
-    width: 400px;
+    width: 800px;
     position: absolute;
-    top: 100px;
+    top: -81px;
     left: 0px;
   }
   #restart{
     position: absolute;
-    top: 310px;
-    left: 155px;
+    top: 244px;
+    left: 301px;
     cursor: pointer;
     font-size: 1.25cm;
     color: #fff;
   }
 }
-#mycanvas{
 
+#start{
+  display: flex;
+  height: 300px;
+  justify-content: center;
+  align-items: center;
+  height: 500px;
+}
+#container{
+  display: none;
+  width: 800px;
+  height: 500px;
+  margin: auto;
+  position: relative;
 }

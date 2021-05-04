@@ -1,7 +1,6 @@
 const canvas = document.getElementById("mycanvas");
 const ctx = canvas.getContext("2d");
 
-
 //    ----------------PADDLE-----------------
 // Create PADDLE
 const PADDLE_WIDTH = 100;
@@ -108,7 +107,7 @@ function ballWallCollision(){
 function ballPaddleColision(){
     if(ball.x < paddle.x + paddle.width && ball.x > paddle.x && paddle.y < paddle.y + paddle.height
         && ball.y > paddle.y){
-        ball.dx = -ball.dx;
+        ball.dx = ball.dx;
         ball.dy = -ball.dy;
     }
 }
@@ -118,13 +117,13 @@ function ballPaddleColision(){
 // Creat BRICK
 const brick = {
     row: 3,
-    col: 5,
+    col: 7,
     width: 55,
     height: 20,
-    offsetLeft: 20,
+    offsetLeft: 50,
     offsetTop: 20,
-    marginTop: 40,
-    fillColor: "#2e3548",
+    marginTop: 60,
+    fillColor: "#5dcb09",
     strokeColor: "#fff"
 }
 let bricks = []; // array has bricks
@@ -181,6 +180,7 @@ function ballBrickCollision(){
 // ------------SCORE,LIVES---------------
 const SCORE_IMG = new Image();
 SCORE_IMG.src = "img/score.png";
+SCORE_IMG.width = 15;
 const LIFE_IMG = new Image();
 LIFE_IMG.src = "img/live.png";
 const LEVEL_IMG = new Image();
@@ -200,25 +200,6 @@ function gameOver(){
         showLose();
     }
 }
-const endgame = document.getElementById("endgame");
-const won = document.getElementById("won");
-const lose = document.getElementById("lose");
-const restart = document.getElementById("restart");
-restart.addEventListener("click", function (){
-    location.reload();
-});
-function showWon(){
-    endgame.style.display = "block";
-    won.style.display = "block";
-}
-function showLose(){
-    endgame.style.display = "block";
-    // endgame.style.background = "transparent";
-    won.style.display = "none";
-    lose.style.display = "block";
-
-
-}
 
 // Level up
 let LEVEL = 1;
@@ -232,6 +213,7 @@ function levelUp(){
     }
     if(isLevelUp){
         if(LEVEL > MAX_LEVEL){
+            showWon();
             GAME_OVER = true;
             return;
         }
@@ -242,19 +224,37 @@ function levelUp(){
         LEVEL++;
     }
 }
+
+const endgame = document.getElementById("endgame");
+const won = document.getElementById("won");
+const lose = document.getElementById("lose");
+const restart = document.getElementById("restart");
+restart.addEventListener("click", function (){
+    location.reload();
+});
+function showWon(){
+    endgame.style.display = "block";
+    won.style.display = "block";
+}
+function showLose(){
+    endgame.style.display = "block";
+    won.style.display = "none";
+    lose.style.display = "block";
+}
+
 //--------------------------------------
 
 const BG_IMG = new Image();
-BG_IMG.src = "img/bg1.png";
+BG_IMG.src = "img/bg2.png";
 
 function draw(){
     drawPaddle();
     drawBall();
     drawBricks();
 
-    showGameStats(SCORE,35,45, SCORE_IMG, 5,25);
-    showGameStats(LIFE,canvas.width - 25,45, LIFE_IMG, canvas.width - 55,25);
-    showGameStats(LEVEL,canvas.width/2,20, LEVEL_IMG, canvas.width/2 - 30,5);
+    showGameStats(SCORE,85,45, SCORE_IMG, 45,25);
+    showGameStats(LIFE,canvas.width - 25,65, LIFE_IMG, canvas.width - 55,45);
+    showGameStats(LEVEL,canvas.width - 25,25, LEVEL_IMG, canvas.width - 55,5);
 }
 function update(){
     movePaddle();
@@ -275,14 +275,11 @@ function loop(){
     }
 
 }
-loop();
+function startGame(){
+    document.getElementById("start").style.display = "none";
+    document.getElementById("container").style.display = "block";
+    loop();
+}
 
 
-
-// x,y is position of rectangle
-// function drawRectangle(x,y) {
-//     ctx.fillStyle = "blue";
-//     ctx.fillRect(x, y, 50, 50);
-// }
-// drawRectangle()
 
